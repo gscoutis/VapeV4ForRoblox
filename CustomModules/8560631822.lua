@@ -3,7 +3,7 @@ local checkpublicreponum = 0
 local checkpublicrepo
 checkpublicrepo = function(id)
 	local suc, req = pcall(function() return requestfunc({
-		Url = "https://raw.githubusercontent.com/gscoutis/VapeV4ForRoblox/main/CustomModules/"..id..".lua",
+		Url = "https://raw.githubusercontent.com/gscoutis/VapeV4ForRoblox/main/"..readfile("vape/commithash.txt").."/CustomModules/"..id..".lua",
 		Method = "GET"
 	}) end)
 	if not suc then
