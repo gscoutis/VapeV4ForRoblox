@@ -49,7 +49,7 @@ local function vapeGithubRequest(scripturl)
 				displayErrorPopup("The connection to github is taking a while, Please be patient.")
 			end
 		end)
-		suc, res = pcall(function() return game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/"..readfile("vape/commithash.txt").."/"..scripturl, true) end)
+		suc, res = pcall(function() return game:HttpGet("https://raw.githubusercontent.com/gscoutis/VapeV4ForRoblox/"..readfile("vape/commithash.txt").."/"..scripturl, true) end)
 		if not suc or res == "404: Not Found" then
 			displayErrorPopup("Failed to connect to github : vape/"..scripturl.." : "..res)
 			error(res)
@@ -583,13 +583,13 @@ OnlineProfilesButton.MouseButton1Click:Connect(function()
 		local onlineprofiles = {}
 		local saveplaceid = tostring(shared.CustomSaveVape or game.PlaceId)
         local success, result = pcall(function()
-            return game:GetService("HttpService"):JSONDecode(game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeProfiles/main/Profiles/"..saveplaceid.."/profilelist.txt", true))
+            return game:GetService("HttpService"):JSONDecode(game:HttpGet("https://raw.githubusercontent.com/gscoutis/VapeProfiles/main/Profiles/"..saveplaceid.."/profilelist.txt", true))
         end)
 		for i,v in pairs(success and result or {}) do 
 			onlineprofiles[i] = v
 		end
 		for i2,v2 in pairs(onlineprofiles) do
-			local profileurl = "https://raw.githubusercontent.com/7GrandDadPGN/VapeProfiles/main/Profiles/"..saveplaceid.."/"..v2.OnlineProfileName
+			local profileurl = "https://raw.githubusercontent.com/gscoutis/VapeProfiles/main/Profiles/"..saveplaceid.."/"..v2.OnlineProfileName
 			local profilebox = Instance.new("Frame")
 			profilebox.BackgroundColor3 = Color3.fromRGB(31, 30, 31)
 			profilebox.Parent = OnlineProfilesList
@@ -1617,7 +1617,7 @@ local teleportConnection = playersService.LocalPlayer.OnTeleport:Connect(functio
 			if shared.VapeDeveloper then 
 				loadstring(readfile("vape/NewMainScript.lua"))() 
 			else 
-				loadstring(game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/NewMainScript.lua", true))() 
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/gscoutis/VapeV4ForRoblox/main/NewMainScript.lua", true))() 
 			end
 		]]
 		if shared.VapeDeveloper then
@@ -1764,7 +1764,7 @@ local function loadVape()
 		if isfile("vape/CustomModules/"..game.PlaceId..".lua") then
 			loadstring(readfile("vape/CustomModules/"..game.PlaceId..".lua"))()
 		else
-			local suc, publicrepo = pcall(function() return game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/CustomModules/"..game.PlaceId..".lua") end)
+			local suc, publicrepo = pcall(function() return game:HttpGet("https://raw.githubusercontent.com/gscoutis/VapeV4ForRoblox/main/CustomModules/"..game.PlaceId..".lua") end)
 			if suc and publicrepo and publicrepo ~= "404: Not Found" then
 				writefile("vape/CustomModules/"..game.PlaceId..".lua", "--This watermark is used to delete the file if its cached, remove it to make the file persist after commits.\n"..publicrepo)
 				loadstring(readfile("vape/CustomModules/"..game.PlaceId..".lua"))()
